@@ -1,0 +1,73 @@
+#profile__img {
+  width: 5rem;
+}
+#tooltip {
+  position: relative;
+  align-items: center;
+}
+
+#tooltip #tooltiptext {
+  visibility: hidden;
+  width: auto;
+  text-align: center;
+  background-color: black;
+  color: white;
+  padding: 0.6rem;
+  top: -20vh;
+  right: 130px;
+  border-radius: 5px 0px 0px 5px;
+  position: absolute;
+
+  z-index: 10;
+}
+
+#tooltip:hover #tooltiptext {
+  visibility: visible;
+}
+
+#share__button {
+  display: flex;
+  position: absolute;
+  z-index: 999;
+  top: -19vh;
+  border: 1px dotted grey;
+  padding: 0.5rem;
+  border-radius: 2rem;
+  right: 90px;
+}
+#share__button:focus {
+  outline: 1px solid blue;
+  background-color: white;
+}
+
+#share__button:hover {
+  background-color: #d0d5dd;
+}
+#more__button {
+  display: none;
+}
+#container {
+  justify-content: center;
+}
+#slack {
+  display: none;
+}
+@media (min-width: 100px) and (max-width: 600px) {
+  #container {
+    display: flex;
+    justify-content: center;
+  }
+  #share__button {
+    display: none;
+  }
+  #more__button {
+    display: flex;
+    justify-content: right;
+    position: absolute;
+    z-index: 999;
+    top: 5vh;
+    outline: 1px solid transparent;
+    border-radius: 2.1rem;
+    right: 10vw;
+  }
+}

@@ -1,0 +1,35 @@
+#footer__div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 1rem;
+}
+#footer__border {
+  border-top: 1px solid #ebecf0;
+  margin-top: 1rem;
+}
+#footer__div h3 {
+  color: gray;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+@media (min-width: 200px) and (max-width: 650px) {
+  #footer__div {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: flex-start;
+    text-align: center;
+    margin-left: 2vh;
+    padding: 0.5rem;
+  }
+  #footer__div img {
+    padding: 0.1rem;
+    align-items: center;
+  }
+
+  #footer__div h3 {
+    align-items: center;
+  }
+}
