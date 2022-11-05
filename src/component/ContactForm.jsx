@@ -2,22 +2,53 @@ import React,{useState} from "react";
 import  contactForm from "../styles/contactForm.module.css";
 export const ContactForm = () => {
     const [first, setfirst] = useState(false)
+    const [second, setSecond] = useState(false)
     const [firstname, setFirstname] = useState('')
-    const [lastName, setLasrtname] = useState('')
+    const [lastName, setLastName] = useState('')
 
 
 const firstNameHandler = (e)=>{
     setFirstname(e.target.value)
 
-}
-
-    const formHandler = (e) => {
-    e.preventDefault()
-    if (firstname.length <= 0 && lastname.length <= 0) {
+    if (firstname.length <= 0)  {
         setfirst(true)
 
     } else{
         setfirst(false)
+
+    }
+
+}
+
+
+const secondNameHandler = (e)=>{
+    setLastName(e.target.value)
+
+    if (lastName.length <= 0)  {
+        setSecond(true)
+
+    } else{
+        setSecond(false)
+
+    }
+
+}
+    const formHandler = (e) => {
+    e.preventDefault()
+    if (firstname.length <= 0)  {
+        setfirst(true)
+
+    } else{
+        setfirst(false)
+
+    }
+
+
+    if (lastName.length <= 0)  {
+        setSecond(true)
+
+    } else{
+        setSecond(false)
 
     }
 }
@@ -34,13 +65,14 @@ const firstNameHandler = (e)=>{
             <input id={contactForm.first_name} type='text' value={firstname} onChange={firstNameHandler}
             style={{borderColor:  first?'red' :''}} placeholder="Enter your first name" />
             <p style={{fontSize:'10px',color:'red',marginTop:'-15px',}}>{first ? <h3>You need to fill in a name</h3>: ''}</p>
-        </label>
-       </div>
+            </label>
+            </div>
 
 
-        <div>
-        <label  htmlFor={contactForm.last_name}> Last Name
-        <input id={contactForm.last_name} type='text' placeholder="Enter your last name" />
+            <div>
+            <label  htmlFor={contactForm.last_name}> Last Name
+            <input id={contactForm.last_name} type='text' value={lastName} style={{borderColor:  second?'red' :''}} onChange={secondNameHandler} placeholder="Enter your last name" />
+            <p style={{fontSize:'10px',color:'red',marginTop:'-15px',}}>{second ? <h3>You need to fill in a name</h3>: ''}</p>
         </label>
 
        </div>
