@@ -77,6 +77,12 @@ form {
 .container {
   margin: auto;
 }
+
+.container h3 {
+  text-align: left;
+  font-weight: 400;
+  margin-top: -0.6rem;
+}
 .container h2 {
   font-size: 40px;
   font-weight: 500;
@@ -120,18 +126,31 @@ input:focus-visible {
 
 @media (min-width: 250px) and (max-width: 650px) {
   form {
-    padding: 1rem 2rem 1rem 3rem;
+    padding: 1rem 2rem 1rem 1.5rem;
     margin: auto;
   }
   .name__div input {
     padding: 10px;
     margin-right: 20px;
-    width: 33vw;
+    width: 75vw;
     border: 1px solid grey;
 
     border-radius: 5px;
     outline: none;
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
     height: 4vh;
+  }
+  .name__div {
+    display: block;
+  }
+  .name__div input {
+    display: block;
+  }
+  .container h3 {
+    font-size: 1rem;
+  }
+  p {
+    font-size: 0.5rem;
+    margin-top: -20px;
   }
 }

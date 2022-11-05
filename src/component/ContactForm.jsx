@@ -3,14 +3,20 @@ import { useNavigate } from "react-router-dom";
 import contactForm from "../styles/contactForm.module.css";
 export const ContactForm = () => {
   const navigate = useNavigate();
+  //State for error checking
   const [first, setfirst] = useState(false);
-  const [message, setMessage] = useState(false);
   const [second, setSecond] = useState(false);
   const [messageError, setMessageError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(true);
+
+  //State for each input
+  const [message, setMessage] = useState("");
   const [firstname, setFirstname] = useState("");
+  const [email, setEmail] = useState("");
   const [lastName, setLastName] = useState("");
   const [checkbox, setCheckbox] = useState(false);
+  const [isFound, setIsFound] = useState(false);
 
   const firstNameHandler = (e) => {
     setFirstname(e.target.value);
@@ -40,8 +46,22 @@ export const ContactForm = () => {
       setMessageError(false);
     }
   };
+
+  const emailHandler = (e) => {
+    setEmail(e.target.value);
+
+    if (email.length <= 0) {
+      setEmailError(true);
+    } else {
+      setEmailError(false);
+    }
+  };
+
   const formHandler = (e) => {
     e.preventDefault();
+    if (email.includes("@")) {
+      setIsFound(true);
+    }
     if (firstname.length <= 0) {
       setfirst(true);
     } else {
@@ -53,6 +73,18 @@ export const ContactForm = () => {
     } else {
       setSecond(false);
     }
+
+    if (email.length <= 0) {
+      setEmailError(true);
+    } else {
+      setEmailError(false);
+    }
+
+    if (message.length <= 0) {
+      setMessageError(true);
+    } else {
+      setMessageError(false);
+    }
   };
 
   const checkboxHandler = () => {
@@ -63,6 +95,7 @@ export const ContactForm = () => {
     <div className={contactForm.container}>
       <form action='POST' onSubmit={formHandler}>
         <h2>Contact Me</h2>
+        <h3>Hi There,Contact Me to ask about anything you have in mind</h3>
 
         <div className={contactForm.name__div}>
           <div id={contactForm.firstName}>
@@ -106,7 +139,10 @@ export const ContactForm = () => {
           <input
             id={contactForm.email}
             type='email'
+            value={email}
+            onChange={emailHandler}
             placeholder='yourname@email.com'
+            style={{ borderColor: emailError ? "red" : "" }}
           />
           <p
             style={{
@@ -116,18 +152,24 @@ export const ContactForm = () => {
               marginTop: "-15px",
             }}
           >
-            {second ? <h3>Email Address is required</h3> : ""}
+            {emailError ? <h3>You need to input your email address</h3> : ""}
           </p>
         </label>
 
-        <label htmlFor={contactForm.message}>
+        <label style={{ marginTop: "30px" }} htmlFor={contactForm.message}>
           Message
           <textarea
             id={contactForm.message}
             rows='3'
             cols='40'
             value={message}
-            onChange={setMessage}
+            style={{
+              marginTop: "5px",
+              borderColor: messageError ? "red" : "",
+            }}
+            onChange={(e) => {
+              setMessage(e.target.value);
+            }}
             type='text'
             placeholder="Send me a message and i'll reply you as soon as possible"
           />
@@ -139,7 +181,7 @@ export const ContactForm = () => {
               marginTop: "-15px",
             }}
           >
-            {second ? <h3>Message Cannot be empty</h3> : ""}
+            {messageError ? <h3>Message Cannot be empty</h3> : ""}
           </p>
         </label>
 
